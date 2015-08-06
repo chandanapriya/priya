@@ -1,0 +1,83 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= password_field_tag :password %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+
+    <div class="radio">
+      <label><b>Select User Type</b></label>
+      <label><input type="radio" name="userType" value="Doctor" onchange="showDiv('Doctor')">Doctor</label>
+      <label><input type="radio" name="userType" value="Patient" onchange="showDiv('Patient')">Patient</label>
+    </div>
+    <div id="doctorDiv"  style="display:none">
+
+            <label>Specialization</label>
+      <select class="form-control" id="specialization" name="specialization">
+        <option>Cardiology</option>
+        <option>Endotheraphy</option>
+        <option>Anasthesist</option>
+      </select>
+
+    </div>
+
+    <div id="patientDiv" style="display:none">
+      <div>
+         <label>Patient Type</label>
+        <select class="form-control" id="type" name="type">
+          <option>In-patient</option>
+          <option>Out-patient</option>
+
+        </select>
+
+      </div>
+      <div >
+        <label>Consulting Doctor</label>
+       <%= select_tag "doctors", options_from_collection_for_select(@Doctor, "id","user_id") %>
+      </div>
+    </div>
+
+    <br />
+
+
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+    <script type="text/javascript">
+      function showDiv(val){
+          if(val == 'Doctor') {
+              $('#doctorDiv').show()
+              $('#patientDiv').hide()
+          }
+          else{
+              $('#patientDiv').show()
+              $('#doctorDiv').hide()
+          }
+      }
+
+    </script>
+
+<% end %>

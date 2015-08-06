@@ -1,0 +1,31 @@
+<%= form_for(@blood_glucose_reading) do |f| %>
+  <% if @blood_glucose_reading.errors.any? %>
+
+    <div id="error_explanation">
+      <h2><%= pluralize(@blood_glucose_reading.errors.count, "error") %> prohibited this blood_glucose_reading from being saved:</h2>
+
+      <ul>
+      <% @blood_glucose_reading.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <% if  flash[:error] %>
+    <%= flash[:error] %>
+    <% end %>
+
+  <div class="field">
+    <%= f.label :reading %> <br>
+    <%= f.number_field :reading %>
+  </div>
+
+  <div class="field">
+    <%= f.label :patient_id %><br>
+    <%= select_tag :patient_id, options_from_collection_for_select(@Patient, "id","id") %>
+
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

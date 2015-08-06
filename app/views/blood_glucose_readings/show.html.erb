@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Reading:</strong>
+  <%= @blood_glucose_reading.reading %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @blood_glucose_reading.status %>
+</p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @blood_glucose_reading.patient %>
+</p>
+
+<%= link_to 'Edit', edit_blood_glucose_reading_path(@blood_glucose_reading) %> |
+<%= link_to 'Back', blood_glucose_readings_path %>

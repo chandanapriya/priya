@@ -1,0 +1,27 @@
+
+
+<h2>Listing Patients according to Month </h2>
+
+<table class ="table table-bordered">
+  <thead>
+  <tr>
+    <th>Created Month</th>
+    <th>Max</th>
+    <th>Min</th>
+    <th>Avg</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @line_patients.each do |reading| %>
+      <tr>
+        <td><%= reading.month %></td>
+        <td><%= reading.max %></td>
+        <td><%= reading.min %></td>
+        <td><%= reading.aveg %></td>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>
