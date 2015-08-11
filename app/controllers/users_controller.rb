@@ -9,7 +9,12 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    #@users = User.paginate(:page => params[:page], :per_page => 2)
+    if params[:search]
+      @users = User.search(params[:search]).paginate(:page => params[:page], :per_page => 2).order("created_at DESC")
+    else
+      @users = User.paginate(:page => params[:page], :per_page => 2).order('created_at DESC')
+    end
   end
 
   # GET /users/1

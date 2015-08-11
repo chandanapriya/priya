@@ -1,3 +1,16 @@
+<br />
+<br />
+<br />
+
+<%= form_tag(users_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+    <%= submit_tag "Search" %>
+<% end %>
+
+<% if @users.present? %>
+
+
+
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Users</h1>
@@ -25,7 +38,10 @@
     <% end %>
   </tbody>
 </table>
-
+    <%= will_paginate @users %>
+<% else %>
+    <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+<% end %>
 <br>
 
 <%= link_to 'New User', new_user_path %>
